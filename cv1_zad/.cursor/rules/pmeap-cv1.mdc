@@ -1,0 +1,76 @@
+---
+description: PMEAP CV1 — pravidlá práce podľa prednášky, príkladov a existujúcich úloh
+alwaysApply: true
+---
+
+# PMEAP CV1 — záväzné pravidlá
+
+Pracuj **výhradne** podľa týchto pravidiel. Nezavádzaj postupy ani knižnice mimo rozsahu CV1.
+
+## Najvyššia priorita: jednoduchosť a „primitívnosť“
+
+Úroveň kódu musí zostať **rovnako jednoduchá a priamočiara** ako v základných materiáloch (`pr*.cpp`, prednáška, MIT lec). To nie je preferencia — je to tvrdé obmedzenie.
+
+- Píš ako začiatočnícky školský príklad: lineárny `main`, viditeľné kroky, vnorené `for`/`while`, žiadne „šikovné“ skratky.
+- Preferuj **dlhší, čitateľný** kód pred kratším/elegantnejším.
+- Nepoužívaj idiomy, ktoré v materiáloch nie sú: funkcie navyše, pointerová aritmetika, ternárne operátory, `const` všade, RAII, lambdy, `auto` (okrem existujúceho príkladu so `sizeof`), helper abstrakcie.
+- Ak existujú dve riešenia, vyber to, ktoré by študent napísal po prvej prednáške o poliach — nie to, čo by napísal skúsený programátor.
+- Pred odovzdaním si over: „Vyzerá toto ako `ul1_1.cpp` / `pr2_array.cpp`?“ Ak nie, zjednoduš.
+
+## Kontext projektu
+
+- Predmet: **PMEAP** (Programovanie mechatronických aplikácií), UAMT FEI STU
+- Téma CV1: architektúra C++, syntax, riadenie toku, **polia a C-reťazce**
+- Referencie: `PMEAP_prednaska1*.pdf`, MIT `MIT6_096IAP11_lec01/02/04.pdf`
+- Príklady (vzor): `cv1_zad/pr*.cpp` a `cv1/cv1_priklady/`
+- Úlohy (riešenia): `cv1/ul1_1.cpp`, `cv1/ul1_2.cpp`, `cv1/ul2.cpp`
+- Build: g++ (MSYS2), aktívny súbor → `.exe` (pozri `.vscode/tasks.json`)
+
+## Povolený štýl kódu
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // ...
+    return 0;
+}
+```
+
+- Jeden program = jeden `.cpp` so vstupným bodom `int main()`.
+- I/O: `cin` / `cout`; nový riadok preferuj `"\n"` (nie nutne `endl`).
+- Identifikátory: písmená, číslice, `_`; nezačínať číslicou; case-sensitive.
+- Premenné inicializuj pred použitím.
+- Cykly: `for` / `while` / `do-while`; vetvenie: `if` / `else` / `switch` podľa potreby.
+- Polia: pevná dimenzia, indexovanie **od 0** do `n-1`; neprechádzať hranice.
+- Viacrozmerné polia: `typ meno[d1][d2]` (príp. 3D); v pamäti lineárne (row-major).
+- Reťazce = **`char` pole** ukončené `'\0'`. Dĺžku počítaj ručne (`while` po `'\0'`), nie cez `std::string`.
+- V úlohách s mriežkou: `char pole2[30][30]`, vyplnenie `'*'`, meno študenta: `"Mia Dudasova"`.
+- Komentáre SK/EN OK; drž sa jednoduchej školskej čitateľnosti ako v `ul*.cpp`.
+
+## Zakázané (mimo rozsahu CV1 / prednášky)
+
+- `std::string`, `std::vector`, `std::array` a iné STL kontajnery
+- OOP (`class` / `struct` s metódami), výnimky, šablóny
+- Dynamická alokácia (`new` / `delete` / `malloc`) — pokiaľ to zadanie výslovne nežiada
+- Externé knižnice mimo `<iostream>` (a prípadne `<cctype>` / `<cstring>` len ak to zadanie/prednáška vyžaduje)
+- „Moderný“ refaktor, ktorý mení pedagogický zámer príkladov
+
+## Ako pracovať na úlohách
+
+1. Najprv skontroluj existujúce `ul*.cpp` a podobné `pr*.cpp` — zachovaj ich pattern.
+2. Rieš iba to, čo zadanie/používateľ pýta; nemen štruktúru bez dôvodu.
+3. Nevymýšľaj zadanie: ak chýba text zadaniaia, spýtaj sa alebo odvoď len z existujúceho kódu.
+4. Pri úpravách príkladov (`pr*`) zachovaj výukový zámer (ukážka polí / `sizeof` / 2D–3D / C-stringov).
+5. Nespúšťaj zbytočné refaktory; žiadne markdown súbory navyše, pokiaľ o ne používateľ nepožiada.
+
+## Rýchly checklist pred odovzdaním kódu
+
+- [ ] Rovnaká jednoduchosť ako `pr*` / `ul*` (žiadna „lepšia“ architektúra)
+- [ ] Kompilovateľné g++ bez C++11+/STL navyše
+- [ ] `main` + `return 0`
+- [ ] Reťazce ako `char[]`, dĺžka cez `'\0'`
+- [ ] Indexy v medziach poľa
+- [ ] Štýl ako v existujúcich `ul*.cpp` / `pr*.cpp`
