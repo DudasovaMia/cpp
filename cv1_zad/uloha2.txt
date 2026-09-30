@@ -4,22 +4,11 @@ using namespace std;
 int main()
 {
     char meno[] = "Mia Dudasova";
-
-    int dlzka = 0;
-
-    while (meno[dlzka] != '\0')
-    {
-        dlzka++;
-    }
-
-    char pracovne[50];
-
-    for (int k = 0; k < dlzka; k++)
-    {
-        pracovne[k] = meno[k];
-    }
-
     char pole2[30][30];
+
+    // --- to iste ako v ulohe 1 ---
+
+    int dlzka = sizeof(meno) / sizeof(meno[0]) - 1;
 
     for (int i = 0; i < 30; i++)
     {
@@ -34,35 +23,32 @@ int main()
         for (int j = 0; j < dlzka; j++)
         {
             int pozicia = i + j;
-
             if (pozicia >= 30)
             {
                 pozicia = pozicia - 30;
             }
-
-            pole2[i][pozicia] = pracovne[j];
+            pole2[i][pozicia] = meno[j];
         }
 
-        // posledny znak mena na zaciatok (rotacia)
-        char posledny = pracovne[dlzka - 1];
-
+        char posledny = meno[dlzka - 1];
         for (int k = dlzka - 1; k > 0; k--)
         {
-            pracovne[k] = pracovne[k - 1];
+            meno[k] = meno[k - 1];
         }
-
-        pracovne[0] = posledny;
+        meno[0] = posledny;
     }
+
+    // --- uloha 2 ---
 
     char znak1;
     char znak2;
 
     cout << "Zadaj prvy znak: ";
     cin >> znak1;
-
     cout << "Zadaj druhy znak: ";
     cin >> znak2;
 
+    // '*' nahradim prvym znakom, pismena druhym, medzera ostane
     for (int i = 0; i < 30; i++)
     {
         for (int j = 0; j < 30; j++)
@@ -73,7 +59,6 @@ int main()
             }
             else if (pole2[i][j] != ' ')
             {
-                // pismena mena a priezviska (medzera ostava)
                 pole2[i][j] = znak2;
             }
         }
@@ -85,7 +70,6 @@ int main()
         {
             cout << pole2[i][j];
         }
-
         cout << "\n";
     }
 

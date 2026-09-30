@@ -1,29 +1,30 @@
 #include <iostream>
 using namespace std;
 
-// Vytvorte program pre vykreslenie japonskej zástavy v znakovej grafike (biela reprezentovaná nulou, červená 
-// jednotkou). Z konzoly bude možné zadať veľkosť zástavy aj veľkosť kruhu.
-
 #define RED "\033[31m"
 #define RESET "\033[0m"
 
 int main() {
-    int velkost = 0;
+    int vyska = 0;
+    int sirka = 0;
     int polomer = 0;
 
-    cout << "Zadaj velkost zastavy: ";
-    cin >> velkost;
+    cout << "Zadaj vysku zastavy: ";
+    cin >> vyska;
+    cout << "Zadaj sirku zastavy: ";
+    cin >> sirka;
     cout << "Zadaj polomer kruhu: ";
     cin >> polomer;
 
-    int stred = velkost / 2;
+    int stred_riadok = vyska / 2;
+    int stred_stlpec = sirka / 2;
 
-    for (int i = 0; i < velkost; i++)
+    for (int i = 0; i < vyska; i++)
     {
-        for (int j = 0; j < velkost; j++)
+        for (int j = 0; j < sirka; j++)
         {
-            int x = i - stred;
-            int y = j - stred;
+            int x = i - stred_riadok;
+            int y = j - stred_stlpec;
 
             if (x * x + y * y <= polomer * polomer)
             {

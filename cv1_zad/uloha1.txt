@@ -4,23 +4,12 @@ using namespace std;
 int main()
 {
     char meno[] = "Mia Dudasova";
-
-    int dlzka = 0;
-
-    while (meno[dlzka] != '\0')
-    {
-        dlzka++;
-    }
-
-    char pracovne[50];
-
-    for (int k = 0; k < dlzka; k++)
-    {
-        pracovne[k] = meno[k];
-    }
-
     char pole2[30][30];
 
+    // dlzka mena, -1 lebo sizeof zapocita aj znak '\0' na konci
+    int dlzka = sizeof(meno) / sizeof(meno[0]) - 1;
+
+    // cele pole vyplnim hviezdickami
     for (int i = 0; i < 30; i++)
     {
         for (int j = 0; j < 30; j++)
@@ -31,36 +20,36 @@ int main()
 
     for (int i = 0; i < 30; i++)
     {
+        // v riadku i zacina meno na pozicii i
         for (int j = 0; j < dlzka; j++)
         {
             int pozicia = i + j;
 
+            // ked meno presiahne koniec riadku, pokracuje od zaciatku
             if (pozicia >= 30)
             {
                 pozicia = pozicia - 30;
             }
 
-            pole2[i][pozicia] = pracovne[j];
+            pole2[i][pozicia] = meno[j];
         }
 
-        // posledny znak mena na zaciatok (rotacia)
-        char posledny = pracovne[dlzka - 1];
-
+        // posledny znak mena dam dopredu, ostatne posuniem o 1 doprava
+        char posledny = meno[dlzka - 1];
         for (int k = dlzka - 1; k > 0; k--)
         {
-            pracovne[k] = pracovne[k - 1];
+            meno[k] = meno[k - 1];
         }
-
-        pracovne[0] = posledny;
+        meno[0] = posledny;
     }
 
+    // vypis pola po riadkoch
     for (int i = 0; i < 30; i++)
     {
         for (int j = 0; j < 30; j++)
         {
             cout << pole2[i][j];
         }
-
         cout << "\n";
     }
 
